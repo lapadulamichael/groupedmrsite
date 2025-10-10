@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projets — Groupe Construction DMR</title>
+  <meta name="description" content="Réalisations de Groupe Construction DMR : carrelage et revêtements commerciaux, industriels, institutionnels et résidentiels." />
+  <style>
+    :root{
+      --header-h: 64px;
+      --text-on-dark: #eef3f7;
+      --line: rgba(255,255,255,0.22);
+      --accent: #e7b84b;
+    }
+
+    /* ---------- Base ---------- */
+    html, body { height: 100%; overflow-x: hidden; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#e7eef6;
+      line-height:1.6;
+      background:#0b0f13;
+    }
+    a { color: inherit; }
+
+    /* ---------- Header (même style) ---------- */
+    header{
+      position: fixed; inset: 0 0 auto 0;
+      height: var(--header-h);
+      z-index: 30;
+      display:flex; align-items:center;
+      background: rgba(10,16,22,0.35);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap{
+      max-width: 1200px; width: 100%;
+      margin: 0 auto; padding: 0 20px;
+      display:flex; align-items:center; justify-content: space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      color: var(--text-on-dark);
+      font-weight:700; letter-spacing:.03em;
+      text-decoration:none;
+    }
+    .brand-name{ font-size:18px; }
+    .logo{ height:40px; width:auto; display:block; }
+
+    nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:8px; }
+    nav a{
+      color: var(--text-on-dark);
+      text-decoration:none; font-weight:600; letter-spacing:.02em;
+      padding:8px 12px; border-radius:999px;
+      transition: background .2s ease, transform .15s ease;
+    }
+    nav a:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+
+    main{ padding-top: calc(var(--header-h) + 14px); }
+
+    /* ---------- Hero ---------- */
+    #hero{
+      position:relative; min-height: 46vh;
+      display:grid; place-items:center;
+      color:#fff; overflow:hidden; z-index:0;
+      background: url("im1.jpg") center/cover no-repeat;
+    }
+    #hero::before, #hero::after{ content:""; position:absolute; inset:0; z-index:1; }
+    #hero::before{ background: linear-gradient(180deg, rgba(10,16,22,.55), rgba(10,16,22,.55)); }
+    #hero::after{
+      inset:0 55% 0 0;
+      background: rgba(12,18,24,.55);
+      clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative; z-index:2;
+      width:100%; max-width:1200px;
+      margin:0 auto; padding:40px 20px;
+    }
+    #hero h1{
+      margin:0 0 8px 0; padding-bottom:12px;
+      text-transform:uppercase; letter-spacing:.06em; line-height:1.08;
+      font-weight:300; font-size: clamp(26px, 6vw, 56px);
+      color:#fff; text-shadow:0 2px 24px rgba(0,0,0,.35);
+      position:relative;
+    }
+    #hero h1::after{
+      content:""; position:absolute; left:0; bottom:0;
+      width:110px; height:2px;
+      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,.2));
+    }
+    .hero-sub{ color:#dfe7ee; opacity:.9; letter-spacing:.24em; text-transform:uppercase; font-size:12px; }
+
+    /* ---------- Section projets ---------- */
+    .section{
+      max-width: 1200px;
+      margin: 28px auto 0;
+      padding: 0 20px 44px;
+    }
+
+    /* Barre courte d’info/filtre (facultatif, statique ici) */
+    .bar{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      color:#cdd7e1; font-size:14px; opacity:.95;
+      border-bottom: 1px dashed rgba(255,255,255,.15);
+      padding-bottom: 10px; margin-bottom: 18px;
+    }
+
+    /* Carte projet “plate” (pas de gros arrondis) */
+    .project{
+      border: 1px solid rgba(255,255,255,.08);
+      background: #0f141b;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .project-header{
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+      margin-bottom: 10px;
+    }
+    .project-title{
+      margin:0; font-size:20px; font-weight:700; color:#fff; letter-spacing:.02em;
+    }
+    .project-meta{
+      color:#b7c6d3; font-size:13px; opacity:.95; white-space:nowrap;
+    }
+    .project-desc{
+      margin: 6px 0 12px; color:#dfe7ee; opacity:.95;
+    }
+
+    /* Grille 2 photos par projet */
+    .media{
+      display:grid; gap:8px; grid-template-columns: 1fr 1fr;
+    }
+    .media img{
+      width:100%; height: 280px; object-fit: cover; display:block;
+      background:#0b0f13;
+    }
+
+    /* grille globale (2 colonnes de projets) */
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
+    @media (max-width: 560px){
+      .media{ grid-template-columns: 1fr; }
+      .media img{ height: 220px; }
+    }
+
+    /* ---------- Footer (copie) ---------- */
+    footer{
+      color:#d7e1ea; background:#111820; text-align:center;
+      padding:18px; border-top:1px solid rgba(255,255,255,.12); margin-top:42px; font-size:14px;
+    }
+    footer a{ color:#ffd66a; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+    /* ---------- Banderole fournisseurs ---------- */
+    .vendors{
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+    }
+    .vendors-title{
+    color:#fff;
+    font-weight:700;
+    margin-bottom: 24px;
+    letter-spacing:.02em;
+    }
+
+    .vendors-grid{
+    list-style: none;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    align-items: center;
+    background: #ffffff;
+    }
+
+    .vendors-grid div{
+    background: #111820;
+    padding: 16px;
+    border-radius: 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    
+    }
+
+    .vendors-grid img{
+    max-width: 100%;
+    max-height: 60px;
+    object-fit: contain;
+    display:block;
+    opacity: 1;
+    transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+    }
+
+    .nav-toggle{
+    display:none; /* caché par défaut (desktop) */
+    align-items:center;
+    gap:8px;
+    background: transparent;
+    color: var(--text-on-dark);
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  .nav-toggle:focus{ outline: 2px solid #fff; outline-offset: 2px; }
+  .nav-toggle__label{ font-weight: 700; letter-spacing:.02em; }
+
+  /* ----- Panneau mobile ----- */
+  @media (max-width: 960px){
+    /* Affiche le bouton, transforme la nav en panneau */
+    .nav-toggle{ display:flex; }
+
+    /* Positionne la nav en panneau latéral droit */
+    #site-nav{
+      position: fixed;
+      top: var(--header-h);
+      right: 0;
+      height: calc(100dvh - var(--header-h));
+      width: min(320px, 88vw);
+      background: rgba(10,16,22,0.92);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border-left: 1px solid var(--line);
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      z-index: 28;
+      padding: 14px 16px;
+    }
+    #site-nav[data-open="true"]{
+      transform: translateX(0);
+    }
+
+    /* Liste verticale dans le panneau */
+    #site-nav ul{
+      display: grid;
+      gap: 10px;
+    }
+    #site-nav a{
+      display:block;
+      padding:12px 10px;
+      border-radius:10px;
+      background: rgba(255,255,255,0.05);
+    }
+    #site-nav a:hover{
+      background: rgba(255,255,255,0.12);
+      transform:none; /* on évite le petit lift sur mobile */
+    }
+
+    /* Empêche le scroll de la page quand le menu est ouvert */
+    body.nav-open{ overflow: hidden; }
+  }
+
+  /* Optionnel : voile derrière le panneau (mobile) */
+  @media (max-width: 960px){
+    .nav-backdrop{
+      content:"";
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      background: rgba(0,0,0,.35);
+      z-index: 27;
+      display:none;
+    }
+    .nav-backdrop.is-visible{ display:block; }
+  }
+  /* ----- Ajustement du nom dans le header sur mobile ----- */
+    @media (max-width: 720px) {
+      .brand-name {
+        white-space: nowrap;       /* Empêche le retour à la ligne */
+        font-size: 14px;           /* Réduit légèrement la taille */
+        line-height: 1;            /* Tient mieux dans le header */
+      }
+      .brand {
+        gap: 6px;                  /* Espace un peu plus compact */
+      }
+      .logo {
+        height: 32px;              /* Logo un peu plus petit */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Accueil — Groupe Construction DMR">
+        <span class="brand-name">Groupe Construction DMR</span>
+        <img src="logo_blanc.svg" alt="Logo Groupe Construction DMR" class="logo">
+      </a>
+
+      <!-- Bouton hamburger (visible sur mobile) -->
+      <button id="navToggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+        <!-- Icône simple -->
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-toggle__label">Menu</span>
+      </button>
+
+      <nav id="site-nav" aria-label="Navigation principale" data-open="false">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="soumission.html" class="active">Soumission</a></li>
+          <li><a href="contact.html">Nous joindre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" role="banner" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <h1 id="hero-title">Projets</h1>
+        <p class="hero-sub">Sélection de réalisations récentes</p>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section class="section" aria-labelledby="list-title">
+      <div class="bar">
+        <div>Commercial •  Industriel • Institutionnel • Résidentiel</div>
+      </div>
+
+      <div class="grid">
+        <!-- Projet 1 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 1</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p1a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p1b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Projet 2 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 2</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p2a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p2b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Projet 3 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 3</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p3a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p3b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Projet 4 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 4</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p4a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p4b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Projet 5 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 5</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p5a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p5b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+
+        <!-- Projet 6 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">Projet 6</h2>
+            <div class="project-meta">Ville</div>
+          </div>
+          <p class="project-desc">Job description</p>
+          <div class="media">
+            <img src="images/projets/p6a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p6b.jpg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- FOURNISSEURS -->
+    <section class="vendors" aria-labelledby="vendors-title">
+    <h2 id="vendors-title" class="vendors-title">Nos fournisseurs</h2>
+
+    <div class="vendors-grid">
+        <li>
+            <img src="images/fournisseurs/ceragres.png" alt="Ceragres" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/ciot.jpg" alt="Ciot" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/olympia.png" alt="Olympia" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/ceratec.png" alt="Ceratec" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/daltile.png" alt="Daltile" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/schluter.png" alt="Schluter" loading="lazy">
+        </li>
+        <li>
+            <img src="images/fournisseurs/mapei.png" alt="Mapei" loading="lazy">
+        </li>
+        </ul>
+    </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2025</span> Groupe Construction DMR Inc. / Carrelage DMR. Tous droits réservés.</p>
+    <address>
+      Montréal, QC — <a href="mailto:Info@groupedmr.com">Info@groupedmr.com</a> • <a href="tel:+1-450-912-1389">450-912-1389</a>
+    </address>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Crée un backdrop pour cliquer à l'extérieur
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop){
+        backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    const btn = document.getElementById('navToggle');
+    const nav = document.getElementById('site-nav');    
+    
+    function openNav(){
+        nav.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('nav-open');
+        backdrop.classList.add('is-visible');
+        // focus 1er lien
+        const firstLink = nav.querySelector('a');
+        if (firstLink) setTimeout(() => firstLink.focus(), 50);
+    }
+    function closeNav(){
+        nav.setAttribute('data-open', 'false');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+        backdrop.classList.remove('is-visible');
+        btn.focus();
+    }
+    function toggleNav(){
+        const isOpen = nav.getAttribute('data-open') === 'true';
+        isOpen ? closeNav() : openNav();
+    }
+
+    if (btn && nav){
+        btn.addEventListener('click', toggleNav);
+        backdrop.addEventListener('click', closeNav);
+
+        // Ferme avec ÉCHAP
+        window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.getAttribute('data-open') === 'true'){
+            closeNav();
+        }
+        });
+
+        // Ferme quand on clique un lien
+        nav.addEventListener('click', (e) => {
+        if (e.target.matches('a')) closeNav();
+        });
+
+        // Réinitialise si on repasse desktop (évite nav bloquée)
+        const mq = window.matchMedia('(min-width: 961px)');
+        mq.addEventListener('change', () => { closeNav(); });
+    }
+  </script>
+</body>
+</html>
