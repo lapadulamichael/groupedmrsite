@@ -119,58 +119,6 @@
     .card h2{ margin:0 0 10px; color:#fff; font-weight:700; letter-spacing:.02em; }
     .muted{ color:#c9d4de; opacity:.95; }
 
-    /* ---------- Form styles ---------- */
-    form{ display:grid; gap:14px; }
-    .row{ display:grid; gap:14px; grid-template-columns: 1fr 1fr; }
-    @media (max-width: 720px){ .row{ grid-template-columns: 1fr; } }
-
-    label{ display:block; font-weight:600; color:#e7eef6; margin-bottom:6px; }
-    input, select, textarea{
-      width:100%; box-sizing:border-box;
-      background:#0f141b; color:#e7eef6;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:10px; padding:10px 12px;
-      outline:none;
-      transition:border-color .2s ease, box-shadow .2s ease;
-    }
-    input::placeholder, textarea::placeholder{ color:#9fb0bf; }
-    textarea{ min-height:160px; resize:vertical; }
-    input:focus, select:focus, textarea:focus{
-      border-color:#fff; box-shadow:0 0 0 2px rgba(255,255,255,.08);
-    }
-
-    /* Zone d’upload simple */
-    .drop{
-      border:1px dashed rgba(255,255,255,.22);
-      background:#0f141b;
-      border-radius:10px;
-      padding:14px;
-    }
-    .drop input[type="file"]{ display:none; }
-    .drop .hint{ font-size:12px; color:#b7c6d3; }
-    .drop .btn-file{
-      display:inline-block; margin-top:8px;
-      padding:8px 12px; border-radius:8px; cursor:pointer;
-      background: rgba(255,255,255,.06); color:#fff;
-      border:1px solid rgba(255,255,255,.18);
-    }
-    .file-list{ margin-top:8px; font-size:13px; color:#dfe7ee; }
-
-    .btn{
-      display:inline-block; text-decoration:none; padding:10px 16px;
-      border-radius:10px; font-weight:700; letter-spacing:.03em; cursor:pointer;
-      border:1px solid rgba(255,255,255,.25);
-      color:#1d232b; background: linear-gradient(135deg, var(--accent), #ffd66a);
-      transition: transform .15s ease, filter .2s ease;
-    }
-    .btn:hover{ transform:translateY(-1px); filter:brightness(1.05); }
-
-    .success{
-      display:none; margin-top:10px; padding:12px;
-      border-radius:10px; background:rgba(34,197,94,.12); color:#d1fae5;
-      border:1px solid rgba(34,197,94,.32);
-    }
-
     /* ---------- Footer ---------- */
     footer{
       color:#d7e1ea; background:#111820; text-align:center;
@@ -181,26 +129,24 @@
 
     /* ----- Bouton hamburger ----- */
     .nav-toggle{
-    display:none; /* caché par défaut (desktop) */
-    align-items:center;
-    gap:8px;
-    background: transparent;
-    color: var(--text-on-dark);
-    border: 1px solid rgba(255,255,255,.22);
-    border-radius: 999px;
-    padding: 6px 10px;
-    cursor: pointer;
+      display:none; /* caché par défaut (desktop) */
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
     }
     .nav-toggle:focus{ outline: 2px solid #fff; outline-offset: 2px; }
     .nav-toggle__label{ font-weight: 700; letter-spacing:.02em; }
 
     /* ----- Panneau mobile ----- */
     @media (max-width: 960px){
-    /* Affiche le bouton, transforme la nav en panneau */
-    .nav-toggle{ display:flex; }
+      .nav-toggle{ display:flex; }
 
-    /* Positionne la nav en panneau latéral droit */
-    #site-nav{
+      #site-nav{
         position: fixed;
         top: var(--header-h);
         right: 0;
@@ -214,56 +160,40 @@
         transition: transform .25s ease;
         z-index: 28;
         padding: 14px 16px;
-    }
-    #site-nav[data-open="true"]{
-        transform: translateX(0);
-    }
+      }
+      #site-nav[data-open="true"]{ transform: translateX(0); }
 
-    /* Liste verticale dans le panneau */
-    #site-nav ul{
-        display: grid;
-        gap: 10px;
-    }
-    #site-nav a{
+      #site-nav ul{ display: grid; gap: 10px; }
+      #site-nav a{
         display:block;
         padding:12px 10px;
         border-radius:10px;
         background: rgba(255,255,255,0.05);
-    }
-    #site-nav a:hover{
+      }
+      #site-nav a:hover{
         background: rgba(255,255,255,0.12);
-        transform:none; /* on évite le petit lift sur mobile */
+        transform:none;
+      }
+      body.nav-open{ overflow: hidden; }
     }
 
-    /* Empêche le scroll de la page quand le menu est ouvert */
-    body.nav-open{ overflow: hidden; }
-    }
-
-    /* Optionnel : voile derrière le panneau (mobile) */
     @media (max-width: 960px){
-    .nav-backdrop{
+      .nav-backdrop{
         content:"";
         position: fixed;
         inset: var(--header-h) 0 0 0;
         background: rgba(0,0,0,.35);
         z-index: 27;
         display:none;
+      }
+      .nav-backdrop.is-visible{ display:block; }
     }
-    .nav-backdrop.is-visible{ display:block; }
-    }
-    /* ----- Ajustement du nom dans le header sur mobile ----- */
+
+    /* Small header tweaks */
     @media (max-width: 720px) {
-      .brand-name {
-        white-space: nowrap;       /* Empêche le retour à la ligne */
-        font-size: 14px;           /* Réduit légèrement la taille */
-        line-height: 1;            /* Tient mieux dans le header */
-      }
-      .brand {
-        gap: 6px;                  /* Espace un peu plus compact */
-      }
-      .logo {
-        height: 32px;              /* Logo un peu plus petit */
-      }
+      .brand-name { white-space: nowrap; font-size: 14px; line-height: 1; }
+      .brand { gap: 6px; }
+      .logo { height: 32px; }
     }
   </style>
 </head>
@@ -271,30 +201,29 @@
   <!-- Header -->
   <header>
     <div class="wrap">
-        <a class="brand" href="index.html" aria-label="Accueil — Groupe Construction DMR">
+      <a class="brand" href="index.html" aria-label="Accueil — Groupe Construction DMR">
         <span class="brand-name">Groupe Construction DMR</span>
         <img src="images/logo_blanc.svg" alt="Logo Groupe Construction DMR" class="logo">
-        </a>
+      </a>
 
-        <!-- Bouton hamburger (visible sur mobile) -->
-        <button id="navToggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
-        <!-- Icône simple -->
+      <!-- Bouton hamburger (visible sur mobile) -->
+      <button id="navToggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
         <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <span class="nav-toggle__label">Menu</span>
-        </button>
+      </button>
 
-        <nav id="site-nav" aria-label="Navigation principale" data-open="false">
+      <nav id="site-nav" aria-label="Navigation principale" data-open="false">
         <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="projects.html">Projets</a></li>
-            <li><a href="soumission.html" class="active">Soumission</a></li>
-            <li><a href="contact.html">Nous joindre</a></li>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="soumission.html" class="active">Soumission</a></li>
+          <li><a href="contact.html">Nous joindre</a></li>
         </ul>
-        </nav>
+      </nav>
     </div>
-    </header>
+  </header>
 
   <main>
     <!-- Hero -->
@@ -308,67 +237,29 @@
     <!-- Soumission -->
     <section class="section" aria-labelledby="form-title">
       <div class="grid">
-        <!-- Formulaire -->
+        <!-- Formulaire (Jotform embed) -->
         <div class="card">
-          <h2 id="form-title">Votre projet</h2>
-          <p class="muted">Remplissez ce formulaire — nous reviendrons vers vous rapidement avec les prochaines étapes.</p>
-
-          <!-- Envoi simple vers Info@groupedmr.com via FormSubmit (pas de backend requis) -->
-          <form id="quoteForm" action="https://formsubmit.co/mikelap123@icloud.com" method="POST" enctype="multipart/form-data">
-            <!-- FormSubmit options -->
-            <input type="hidden" name="_subject" value="Nouvelle demande de soumission — Site DMR">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <!-- Redirection (optionnelle) -->
-            <!-- <input type="hidden" name="_next" value="https://votre-domaine.com/merci.html"> -->
-
-            <div class="row">
-              <div>
-                <label for="fullname">Nom complet *</label>
-                <input id="fullname" name="Nom" type="text" required placeholder="Votre nom" />
-              </div>
-              <div>
-                <label for="email">Courriel *</label>
-                <input id="email" name="Courriel" type="email" required placeholder="vous@exemple.com" />
-              </div>
-            </div>
-
-            <div class="row">
-              <div>
-                <label for="phone">Téléphone</label>
-                <input id="phone" name="Téléphone" type="tel" placeholder="(###) ###-####" />
-              </div>
-              <div>
-                <label for="city">Ville *</label>
-                <input id="city" name="Ville" type="text" required placeholder="Montréal, Laval, Longueil, etc." />
-              </div>
-            </div>
-
-            <div>
-              <label for="message">Description du projet *</label>
-              <textarea id="message" name="Description du projet" required placeholder="Type de travaux, matériaux souhaités, superficies, délais, contraintes…"></textarea>
-            </div>
-
-            <!-- Upload -->
-            <div class="drop">
-              <label for="files"><strong>Joindre des documents</strong> (plans, photos, devis)</label>
-              <div class="hint">Formats acceptés : PDF, JPG, PNG, DOCX, XLSX, etc... </div>
-              <label class="btn-file" for="files">Choisir des fichiers…</label>
-              <input id="files" name="Pièces jointes" type="file" multiple
-                     accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.heic,.webp" />
-              <ul id="fileList" class="file-list" aria-live="polite"></ul>
-            </div>
-
-            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:6px;">
-              <button type="submit" class="btn">Envoyer la demande</button>
-              <a href="mailto:mikelap123@icloud.com" class="muted" style="text-decoration:underline;">ou écrire directement</a>
-            </div>
-
-            <div id="success" class="success" role="status" aria-live="polite">
-              Merci! Votre demande a été envoyée. Nous vous contacterons sous peu.
-            </div>
-          </form>
-        </div>
+  <iframe
+    id="jotform-iframe"
+    title="Soumission DMR"
+    allowtransparency="true"
+    allow="geolocation; microphone; camera"
+    src="https://form.jotform.com/252890932186062?nojump=1"
+    frameborder="0"
+    style="min-width:100%; width:1px; height:900px; border:0; background:transparent;"
+    scrolling="no">
+  </iframe>
+  <script type="text/javascript">
+    window.addEventListener("message", function(e){
+      if(!e.data) return;
+      var args = (""+e.data).split(":");
+      if(args[0] === "setHeight"){
+        var ifr = document.getElementById("jotform-iframe");
+        if(ifr) ifr.style.height = args[1] + "px";
+      }
+    });
+  </script>
+</div>
 
         <!-- Infos complémentaires -->
         <aside class="card">
@@ -392,135 +283,57 @@
   </footer>
 
   <script>
-    // Année dynamique (garde ta ligne si tu l'as déjà)
+    // Année dynamique
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // --------- Upload cumulatif ---------
-    const realInput  = document.getElementById('files');
-    const fileListEl = document.getElementById('fileList');
-    const dropZone   = document.querySelector('.drop');
-    const dt         = new DataTransfer(); // contiendra la "liste cumulée"
-
-    function humanSize(bytes) {
-    const kb = Math.round(bytes / 1024);
-    return kb >= 1024
-        ? (Math.round(kb / 102.4) / 10) + ' Mo'
-        : kb + ' Ko';
-    }
-
-    function renderList() {
-    fileListEl.innerHTML = '';
-    [...dt.files].forEach((f, i) => {
-        const li = document.createElement('li');
-        li.style.margin = '4px 0';
-        li.innerHTML = `
-        • ${f.name}
-        <span style="opacity:.8">(${humanSize(f.size)})</span>
-        <button type="button" data-remove="${i}" aria-label="Retirer ${f.name}"
-            style="margin-left:8px; padding:2px 6px; border-radius:6px;
-            border:1px solid rgba(255,255,255,.25); background:transparent;
-            color:#e7eef6; cursor:pointer;">
-            retirer
-        </button>
-        `;
-        fileListEl.appendChild(li);
-    });
-    }
-
-    // Ajout par sélection (chaque "change" s'additionne)
-    realInput.addEventListener('change', (e) => {
-    if (!e.target.files) return;
-    for (const f of e.target.files) dt.items.add(f);
-    realInput.files = dt.files;
-    renderList();
-    // Réinitialise la valeur pour permettre de re-sélectionner le même fichier si besoin
-    e.target.value = '';
-    });
-
-    // Retirer un fichier de la liste
-    fileListEl.addEventListener('click', (e) => {
-    if (e.target.matches('[data-remove]')) {
-        const index = Number(e.target.getAttribute('data-remove'));
-        dt.items.remove(index);
-        realInput.files = dt.files;
-        renderList();
-    }
-    });
-
-    // Drag & drop (optionnel, mais pratique)
-    ['dragenter', 'dragover'].forEach(evt =>
-    dropZone.addEventListener(evt, (e) => {
-        e.preventDefault();
-        dropZone.style.outline = '2px dashed #ffd66a';
-    }, false)
-    );
-
-    ['dragleave', 'drop'].forEach(evt =>
-    dropZone.addEventListener(evt, (e) => {
-        e.preventDefault();
-        dropZone.style.outline = '';
-    }, false)
-    );
-
-    dropZone.addEventListener('drop', (e) => {
-    const files = e.dataTransfer.files;
-    for (const f of files) dt.items.add(f);
-    realInput.files = dt.files;
-    renderList();
-    });
-
-    // Crée un backdrop pour cliquer à l'extérieur
+    // Backdrop pour fermer la nav
     let backdrop = document.querySelector('.nav-backdrop');
     if (!backdrop){
-        backdrop = document.createElement('div');
-        backdrop.className = 'nav-backdrop';
-        document.body.appendChild(backdrop);
+      backdrop = document.createElement('div');
+      backdrop.className = 'nav-backdrop';
+      document.body.appendChild(backdrop);
     }
     const btn = document.getElementById('navToggle');
-    const nav = document.getElementById('site-nav');    
+    const nav = document.getElementById('site-nav');
 
     function openNav(){
-        nav.setAttribute('data-open', 'true');
-        btn.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('nav-open');
-        backdrop.classList.add('is-visible');
-        // focus 1er lien
-        const firstLink = nav.querySelector('a');
-        if (firstLink) setTimeout(() => firstLink.focus(), 50);
+      nav.setAttribute('data-open', 'true');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+      backdrop.classList.add('is-visible');
+      const firstLink = nav.querySelector('a');
+      if (firstLink) setTimeout(() => firstLink.focus(), 50);
     }
     function closeNav(){
-        nav.setAttribute('data-open', 'false');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('nav-open');
-        backdrop.classList.remove('is-visible');
-        btn.focus();
+      nav.setAttribute('data-open', 'false');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+      backdrop.classList.remove('is-visible');
+      btn.focus();
     }
     function toggleNav(){
-        const isOpen = nav.getAttribute('data-open') === 'true';
-        isOpen ? closeNav() : openNav();
+      const isOpen = nav.getAttribute('data-open') === 'true';
+      isOpen ? closeNav() : openNav();
     }
 
     if (btn && nav){
-        btn.addEventListener('click', toggleNav);
-        backdrop.addEventListener('click', closeNav);
+      btn.addEventListener('click', toggleNav);
+      backdrop.addEventListener('click', closeNav);
 
-        // Ferme avec ÉCHAP
-        window.addEventListener('keydown', (e) => {
+      window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && nav.getAttribute('data-open') === 'true'){
-            closeNav();
+          closeNav();
         }
-        });
+      });
 
-        // Ferme quand on clique un lien
-        nav.addEventListener('click', (e) => {
+      nav.addEventListener('click', (e) => {
         if (e.target.matches('a')) closeNav();
-        });
+      });
 
-        // Réinitialise si on repasse desktop (évite nav bloquée)
-        const mq = window.matchMedia('(min-width: 961px)');
-        mq.addEventListener('change', () => { closeNav(); });
+      const mq = window.matchMedia('(min-width: 961px)');
+      mq.addEventListener('change', () => { closeNav(); });
     }
-    </script>
+  </script>
 </body>
 </html>
