@@ -135,15 +135,19 @@
     .media{
       display:grid; gap:8px; grid-template-columns: 1fr 1fr;
     }
-    .media img{
-      width:100%; height: 280px; object-fit: cover; display:block;
-      background:#0b0f13;
-    }
+    .media img {
+  width: 100%;
+  height: 700px;   /* bigger visual area */
+  object-fit: cover;
+}
 
     /* grille globale (2 colonnes de projets) */
-    .grid{
-      display:grid; gap:18px;
-      grid-template-columns: 1fr 1fr;
+    .grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1fr; /* one large column instead of two */
+      max-width: 1000px; /* centered, not full width */
+      margin: 0 auto;
     }
     @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
     @media (max-width: 560px){
@@ -336,78 +340,52 @@
         <!-- Projet 1 -->
         <article class="project">
           <div class="project-header">
-            <h2 class="project-title">Projet 1</h2>
-            <div class="project-meta">Ville</div>
+            <h2 class="project-title">Socceroof Lasalle</h2>
+            <div class="project-meta">Lasalle, Montréal</div>
           </div>
           <p class="project-desc">Job description</p>
           <div class="media">
-            <img src="images/projets/p1a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p1b.jpg" alt="Photo2" loading="lazy">
+            <img src="images/projets/p4a.jpeg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p4b.jpeg" alt="Photo2" loading="lazy">
           </div>
         </article>
 
         <!-- Projet 2 -->
         <article class="project">
           <div class="project-header">
-            <h2 class="project-title">Projet 2</h2>
-            <div class="project-meta">Ville</div>
+            <h2 class="project-title">École Marie-Victorin</h2>
+            <div class="project-meta">Brossard</div>
           </div>
           <p class="project-desc">Job description</p>
           <div class="media">
-            <img src="images/projets/p2a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p2b.jpg" alt="Photo2" loading="lazy">
+            <img src="images/projets/p2a.jpeg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p2b.jpeg" alt="Photo2" loading="lazy">
           </div>
         </article>
 
         <!-- Projet 3 -->
         <article class="project">
           <div class="project-header">
-            <h2 class="project-title">Projet 3</h2>
-            <div class="project-meta">Ville</div>
+            <h2 class="project-title">École Sainte-Colette</h2>
+            <div class="project-meta">Montréal-Nord, Montréal</div>
           </div>
           <p class="project-desc">Job description</p>
           <div class="media">
-            <img src="images/projets/p3a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p3b.jpg" alt="Photo2" loading="lazy">
+            <img src="images/projets/p3a.jpeg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p3b.jpeg" alt="Photo2" loading="lazy">
           </div>
         </article>
 
         <!-- Projet 4 -->
         <article class="project">
           <div class="project-header">
-            <h2 class="project-title">Projet 4</h2>
-            <div class="project-meta">Ville</div>
+            <h2 class="project-title">Aréna Dollard St-Laurent</h2>
+            <div class="project-meta">Lasalle, Montréal</div>
           </div>
           <p class="project-desc">Job description</p>
           <div class="media">
-            <img src="images/projets/p4a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p4b.jpg" alt="Photo2" loading="lazy">
-          </div>
-        </article>
-
-        <!-- Projet 5 -->
-        <article class="project">
-          <div class="project-header">
-            <h2 class="project-title">Projet 5</h2>
-            <div class="project-meta">Ville</div>
-          </div>
-          <p class="project-desc">Job description</p>
-          <div class="media">
-            <img src="images/projets/p5a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p5b.jpg" alt="Photo2" loading="lazy">
-          </div>
-        </article>
-
-        <!-- Projet 6 -->
-        <article class="project">
-          <div class="project-header">
-            <h2 class="project-title">Projet 6</h2>
-            <div class="project-meta">Ville</div>
-          </div>
-          <p class="project-desc">Job description</p>
-          <div class="media">
-            <img src="images/projets/p6a.jpg" alt="Photo1" loading="lazy">
-            <img src="images/projets/p6b.jpg" alt="Photo2" loading="lazy">
+            <img src="images/projets/p1a.jpg" alt="Photo1" loading="lazy">
+            <img src="images/projets/p1b.jpg" alt="Photo2" loading="lazy">
           </div>
         </article>
       </div>
