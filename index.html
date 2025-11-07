@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groupe Construction DMR Inc. / Carrelage DMR</title>
+  <meta name="description" content="Groupe Construction DMR – Spécialistes en carrelage et revêtements." />
+  <style>
+    :root{
+      --header-h: 65px;
+      --text-on-dark: #eef3f7;
+      --line: rgba(255,255,255,0.22);
+      --accent: #e7b84b;
+    }
+
+    /* ---------- Base ---------- */
+    html, body { height: 100%; overflow-x: hidden; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#2a2f35;
+      line-height:1.6;
+      background:#0b0f13;
+    }
+    a { color: inherit; }
+
+    /* ---------- Header ---------- */
+    header{
+      position: fixed; inset: 0 0 auto 0;
+      height: var(--header-h);
+      z-index: 30;
+      display:flex; align-items:center;
+      background: rgba(10,16,22,0.35);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+      
+    }
+    .wrap{
+      max-width: 1240px; width: 100%;
+      margin: 0 auto; padding: 0 20px;
+      display:flex; align-items:center; justify-content: space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      color: var(--text-on-dark);
+      font-weight:700; letter-spacing:.03em;
+      text-decoration:none;
+    }
+    .brand-name{ font-size:18px; }
+    .logo{ height:40px; width:auto; display:block; }
+
+    nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:8px; }
+    nav a{
+      color: var(--text-on-dark);
+      text-decoration:none; font-weight:600; letter-spacing:.02em;
+      padding:8px 12px; border-radius:999px;
+      transition: background .2s ease, transform .15s ease;
+    }
+    nav a:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+
+    main{ padding-top: calc(var(--header-h) + 14px); }
+
+    /* ---------- Hero ---------- */
+    #hero{
+      position:relative; min-height:78vh;
+      display:grid; place-items:center;
+      color:#fff;
+      background: url("images/im1.jpg") center/cover no-repeat;
+      overflow:hidden; z-index:0;
+    }
+    /* overlays derrière le contenu */
+    #hero::before, #hero::after{ content:""; position:absolute; inset:0; z-index:1; }
+    #hero::before{ background: linear-gradient(180deg, rgba(10,16,22,.55), rgba(10,16,22,.55)); }
+    #hero::after{
+      inset:0 40% 0 0;
+      background: rgba(12,18,24,.55);
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative; z-index:2;
+      width:100%; max-width:1200px;
+      margin:0 auto; padding:40px 20px;
+      display:grid; grid-template-columns: 2fr 1fr; gap:40px; align-items:center;
+    }
+    .eyebrow{
+      font-size:13px; letter-spacing:.28em; text-transform:uppercase;
+      opacity:.9; color:#dfe7ee; margin:0 0 14px 0;
+    }
+    #hero h1{
+      margin:0; padding-bottom:14px;
+      text-transform:uppercase; letter-spacing:.06em; line-height:1.08;
+      font-weight:300; font-size:clamp(28px, 7vw, 72px);
+      color:#fff; text-shadow:0 2px 24px rgba(0,0,0,.35);
+      position:relative;
+    }
+    #hero h1::after{
+      content:""; position:absolute; left:0; bottom:0;
+      width:120px; height:2px;
+      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,.2));
+      transform-origin:left; animation:underline .9s ease forwards;
+    }
+    @keyframes underline{ from{transform:scaleX(0);} to{transform:scaleX(1);} }
+
+    .hero-cta{ margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      display:inline-block; text-decoration:none; padding:10px 16px;
+      border-radius:10px; font-weight:700; letter-spacing:.03em;
+      border:1px solid rgba(255,255,255,.25);
+      color:#fff; background: rgba(255,255,255,.06);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); border-color:#fff; background: rgba(255,255,255,.12); }
+    .btn--accent{ border-color:transparent; background: linear-gradient(135deg, var(--accent), #ffd66a); color:#1d232b; }
+    .btn--accent:hover{ filter:brightness(1.05); }
+
+    .hero-logo-wrap{ display:flex; justify-content:center; align-items:center; }
+    .hero-logo{ max-width:500px; height:auto; }
+
+    /* ---------- Section contenu ---------- */
+    .content{
+      position:relative; width:100%;
+      background: url("images/im2.jpeg") center/cover no-repeat fixed;
+      margin:36px 0; padding:48px 16px;
+    }
+    .content::before{ content:""; position:absolute; inset:0; background: rgba(0,0,0,0.25); }
+    .content .inner{ position:relative; max-width:960px; margin:0 auto; }
+    .card{
+      background:#fff; border-radius:14px;
+      box-shadow:0 14px 30px rgba(0,0,0,.14);
+      padding:26px 24px 12px;
+    }
+    .card h3{ margin:0 0 6px 0; color:#222; }
+    .card ul{ padding-left:18px; }
+
+    /* ---------- CTA ---------- */
+    #cta{
+      margin:28px auto 0; text-align:center;
+      background: linear-gradient(135deg, #0f2f48, #1a4667);
+      color:#fff; padding:22px 18px; border-radius:12px; max-width:960px;
+    }
+    #cta a{ color:#ffd66a; text-decoration:none; font-weight:700; }
+    #cta a:hover{ text-decoration:underline; }
+
+    /* ---------- Footer ---------- */
+    footer{
+      color:#d7e1ea; background:#111820; text-align:center;
+      padding:18px; border-top:1px solid rgba(255,255,255,.12); margin-top:42px; font-size:14px;
+    }
+    footer a{ color:#ffd66a; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      #hero::after{ inset:0; clip-path:none; }
+      #hero h1::after{ width:90px; }
+    }
+    @media (max-width: 720px){
+      .content{ background-attachment: scroll; }
+      #hero{ background-attachment: scroll; }
+      nav ul{ gap:6px; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+    }
+    /* ----- Bouton hamburger ----- */
+    .nav-toggle{
+      display:none; /* caché par défaut (desktop) */
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .nav-toggle:focus{ outline: 2px solid #fff; outline-offset: 2px; }
+    .nav-toggle__label{ font-weight: 700; letter-spacing:.02em; }
+
+    /* ----- Panneau mobile ----- */
+    @media (max-width: 960px){
+      /* Affiche le bouton, transforme la nav en panneau */
+      .nav-toggle{ display:flex; }
+
+      /* Positionne la nav en panneau latéral droit */
+      #site-nav{
+        position: fixed;
+        top: var(--header-h);
+        right: 0;
+        height: calc(100dvh - var(--header-h));
+        width: min(320px, 88vw);
+        background: rgba(10,16,22,0.92);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform .25s ease;
+        z-index: 28;
+        padding: 14px 16px;
+      }
+      #site-nav[data-open="true"]{
+        transform: translateX(0);
+      }
+
+      /* Liste verticale dans le panneau */
+      #site-nav ul{
+        display: grid;
+        gap: 10px;
+      }
+      #site-nav a{
+        display:block;
+        padding:12px 10px;
+        border-radius:10px;
+        background: rgba(255,255,255,0.05);
+      }
+      #site-nav a:hover{
+        background: rgba(255,255,255,0.12);
+        transform:none; /* on évite le petit lift sur mobile */
+      }
+
+      /* Empêche le scroll de la page quand le menu est ouvert */
+      body.nav-open{ overflow: hidden; }
+    }
+
+    /* Optionnel : voile derrière le panneau (mobile) */
+    @media (max-width: 960px){
+      .nav-backdrop{
+        content:"";
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        background: rgba(0,0,0,.35);
+        z-index: 27;
+        display:none;
+      }
+      .nav-backdrop.is-visible{ display:block; }
+    }
+    /* ----- Bouton hamburger ----- */
+    .nav-toggle{
+      display:none; /* caché par défaut (desktop) */
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .nav-toggle:focus{ outline: 2px solid #fff; outline-offset: 2px; }
+    .nav-toggle__label{ font-weight: 700; letter-spacing:.02em; }
+
+    /* ----- Panneau mobile ----- */
+    @media (max-width: 960px){
+      /* Affiche le bouton, transforme la nav en panneau */
+      .nav-toggle{ display:flex; }
+
+      /* Positionne la nav en panneau latéral droit */
+      #site-nav{
+        position: fixed;
+        top: var(--header-h);
+        right: 0;
+        height: calc(100dvh - var(--header-h));
+        width: min(320px, 88vw);
+        background: rgba(10,16,22,0.92);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform .25s ease;
+        z-index: 28;
+        padding: 14px 16px;
+      }
+      #site-nav[data-open="true"]{
+        transform: translateX(0);
+      }
+
+      /* Liste verticale dans le panneau */
+      #site-nav ul{
+        display: grid;
+        gap: 10px;
+      }
+      #site-nav a{
+        display:block;
+        padding:12px 10px;
+        border-radius:10px;
+        background: rgba(255,255,255,0.05);
+      }
+      #site-nav a:hover{
+        background: rgba(255,255,255,0.12);
+        transform:none; /* on évite le petit lift sur mobile */
+      }
+
+      /* Empêche le scroll de la page quand le menu est ouvert */
+      body.nav-open{ overflow: hidden; }
+    }
+
+    /* Optionnel : voile derrière le panneau (mobile) */
+    @media (max-width: 960px){
+      .nav-backdrop{
+        content:"";
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        background: rgba(0,0,0,.35);
+        z-index: 27;
+        display:none;
+      }
+      .nav-backdrop.is-visible{ display:block; }
+    }
+
+    /* ======== MOBILE PACK (colle ça en bas de ton <style>) ======== */
+
+    /* 1) Bases sûres pour éviter les débordements */
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg { max-width: 100%; height: auto; display: block; }
+    .container, .wrap { width: 100%; }
+
+    /* 2) Ajustements tablette ≤ 960px */
+    @media (max-width: 960px){
+      :root{ --header-h: 56px; }
+
+      .wrap{ padding: 0 14px; }
+
+      /* Hero : stack + respirations */
+      #hero{ min-height: 62vh; background-attachment: scroll; }
+      .hero-inner{ grid-template-columns: 1fr; gap: 20px; padding: 28px 16px; }
+      #hero h1{ font-size: clamp(26px, 7vw, 44px); }
+      .eyebrow{ letter-spacing: .22em; }
+
+      /* Logo hero plus raisonnable */
+      .hero-logo-wrap{ justify-content: flex-start; }
+      .hero-logo{ max-width: 360px; width: 70%; }
+
+      /* Boutons : plus de place au doigt */
+      .hero-cta{ gap: 10px; }
+      .btn{ padding: 12px 16px; }
+
+      /* Section avec image de fond */
+      .content{
+        background-attachment: scroll;
+        margin: 24px 0;
+        padding: 32px 14px;
+      }
+      .content .inner{ max-width: 700px; }
+
+      .card{
+        padding: 18px 16px 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      }
+
+      /* Bandeau CTA */
+      #cta{
+        max-width: 700px;
+        margin: 20px auto 0;
+        padding: 18px 14px;
+        border-radius: 10px;
+      }
+    }
+
+    /* 3) Téléphone ≤ 560px */
+    @media (max-width: 560px){
+      :root{ --header-h: 52px; }
+
+      /* Titre + lignes plus courtes */
+      #hero h1{ font-size: clamp(22px, 8vw, 32px); }
+      #hero h1::after{ width: 84px; }
+
+      /* Eyebrow lisible */
+      .eyebrow{ font-size: 12px; letter-spacing: .18em; }
+
+      /* Logo à taille mobile */
+      .hero-logo{ max-width: 240px; width: 65%; margin-top: 6px; }
+
+      /* Boutons full-width empilés */
+      .hero-cta{ flex-direction: column; }
+      .btn{ width: 100%; text-align: center; }
+
+      /* Carte de contenu compacte */
+      .content{ padding: 24px 12px; }
+      .content .inner{ max-width: 520px; }
+      .card{ padding: 16px 14px 8px; }
+      .card ul{ padding-left: 16px; }
+
+      footer{ font-size: 13px; padding: 16px; }
+    }
+
+    /* 4) Sécurité iOS / vieux Android : pas de scroll latéral parasite */
+    @media (max-width: 560px){
+      html, body { overflow-x: hidden; }
+    }
+    /* ----- Cacher le logo du hero sur mobile ----- */
+    @media (max-width: 970px){
+      .hero-logo-wrap {
+        display: none !important;
+      }
+    }
+    /* ----- Ajustement du nom dans le header sur mobile ----- */
+    @media (max-width: 720px) {
+      .brand-name {
+        white-space: nowrap;       /* Empêche le retour à la ligne */
+        font-size: 14px;           /* Réduit légèrement la taille */
+        line-height: 1;            /* Tient mieux dans le header */
+      }
+      .brand {
+        gap: 6px;                  /* Espace un peu plus compact */
+      }
+      .logo {
+        height: 32px;              /* Logo un peu plus petit */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Accueil — Groupe Construction DMR">
+        <span class="brand-name">Groupe Construction DMR</span>
+        <img src="images/logo_blanc.svg" alt="Logo Groupe Construction DMR" class="logo">
+      </a>
+
+      <!-- Bouton hamburger (visible sur mobile) -->
+      <button id="navToggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+        <!-- Icône simple -->
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-toggle__label">Menu</span>
+      </button>
+
+      <nav id="site-nav" aria-label="Navigation principale" data-open="false">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="soumission.html" class="active">Soumission</a></li>
+          <li><a href="contact.html">Nous joindre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" role="banner" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Depuis 1993</p>
+          <h1 id="hero-title">Plus de 30 ans d’expertise en carrelage</h1>
+          <div class="eyebrow" style="opacity:.8; letter-spacing:.32em; margin-top:10px;">
+            Commercial — Industriel — Institutionnel — Résidentiel
+          </div>
+          <div class="hero-cta">
+            <a class="btn btn--accent" href="soumission.html">Demander une soumission</a>
+            <a class="btn" href="projects.html">Voir nos projets</a>
+          </div>
+        </div>
+        <div class="hero-logo-wrap">
+          <img src="images/logo_blanc.svg" alt="Logo Groupe Construction DMR" class="hero-logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENU -->
+    <section class="content">
+      <div class="inner">
+        <div class="card">
+          <h3>Savoir-faire et accompagnement complet</h3>
+          <p>
+            Depuis plus de trois décennies, <strong>Groupe Construction DMR</strong> met son savoir-faire et son professionnalisme
+            au service de ses clients partout au Canada. Notre mission est simple : livrer des projets
+            de carrelage et de revêtements durables, esthétiques et impeccablement exécutés, tout en offrant un service
+            personnalisé basé sur l’écoute, la rigueur et la confiance. Que ce soit pour un projet commercial, industriel,
+            institutionnel ou résidentiel, nous accompagnons nos clients à chaque étape – de l’estimation à la réalisation finale.
+          </p>
+          <ul>
+            <li>Fondé en 2017 par <strong>Daniel Frenette et Michel Coté</strong></li>
+            <li>Expérience en carrelage depuis <strong>1993</strong></li>
+            <li>Spécialisation : granit, marbre, ardoise, mosaïque, céramique, terrazzo</li>
+            <li>Estimation, lecture de plans et gestion de projets avec équipes et sous-traitants</li>
+            <li>Secteurs : <strong>commercial, industriel, institutionnel, alimentaire, résidentiel</strong></li>
+            <li>Clients majeurs : Ville de Montréal et commissions scolaires (Montréal, Rive-Nord, Rive-Sud)</li>
+            <li>Fournisseurs : Ceragres, Ciot, Olympia, Ceratec, Daltile, Schluter, Mapei, etc.</li>
+          </ul>
+        </div>
+
+        <section id="cta" aria-labelledby="cta-heading">
+          <h3 id="cta-heading">Prêt à démarrer votre projet ?</h3>
+          <p><a href="contact.html">Contactez-nous</a> dès aujourd’hui ou <a href="soumission.html">obtenez une soumission gratuite</a>.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2025</span> Groupe Construction DMR Inc. / Carrelage DMR. Tous droits réservés.</p>
+    <address>
+      Montréal, QC — <a href="mailto:Info@groupedmr.com">Info@groupedmr.com</a> • <a href="tel:+1-450-912-1389">450-912-1389</a>
+    </address>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Crée un backdrop pour cliquer à l'extérieur
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop){
+        backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    const btn = document.getElementById('navToggle');
+    const nav = document.getElementById('site-nav');    
+    
+    function openNav(){
+        nav.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('nav-open');
+        backdrop.classList.add('is-visible');
+        // focus 1er lien
+        const firstLink = nav.querySelector('a');
+        if (firstLink) setTimeout(() => firstLink.focus(), 50);
+    }
+    function closeNav(){
+        nav.setAttribute('data-open', 'false');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+        backdrop.classList.remove('is-visible');
+        btn.focus();
+    }
+    function toggleNav(){
+        const isOpen = nav.getAttribute('data-open') === 'true';
+        isOpen ? closeNav() : openNav();
+    }
+
+    if (btn && nav){
+        btn.addEventListener('click', toggleNav);
+        backdrop.addEventListener('click', closeNav);
+
+        // Ferme avec ÉCHAP
+        window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.getAttribute('data-open') === 'true'){
+            closeNav();
+        }
+        });
+
+        // Ferme quand on clique un lien
+        nav.addEventListener('click', (e) => {
+        if (e.target.matches('a')) closeNav();
+        });
+
+        // Réinitialise si on repasse desktop (évite nav bloquée)
+        const mq = window.matchMedia('(min-width: 961px)');
+        mq.addEventListener('change', () => { closeNav(); });
+    }
+  </script>
+</body>
+</html>
