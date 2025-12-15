@@ -195,6 +195,69 @@
       .brand { gap: 6px; }
       .logo { height: 32px; }
     }
+    .card img{
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 16px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* Aside text spacing */
+    .intro{ margin: 8px 0 14px; }
+    .tips{ margin: 0 0 16px 18px; padding:0; }
+    .tips li{ margin: 6px 0; }
+
+    /* Team card */
+    .team-card{
+      margin-top: 10px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display: grid;
+      gap: 12px;
+    }
+
+    .team-figure{
+      margin:0;
+      overflow:hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+
+    .team-figure img{
+      width:100%;
+      height: 500px;
+      display:block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .team-figure figcaption{
+      padding: 10px 12px 12px;
+    }
+
+    .team-name{ color:#fff; font-weight:800; letter-spacing:.02em; }
+    .team-role{ margin-top: 2px; font-size: 14px; }
+
+    .badge{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(231,184,75,.35);
+      background: rgba(231,184,75,.12);
+      color: #ffd66a;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .02em;
+    }
+
+    /* Mobile: photo un peu moins haute */
+    @media (max-width: 560px){
+      .team-figure img{ height: 260px; }
+    }
+
   </style>
 </head>
 <link rel="icon" type="image/svg" sizes="32x32" href="images/favicon-32x32.svg">
@@ -265,13 +328,29 @@
 
         <!-- Infos complémentaires -->
         <aside class="card">
-          <h2 style="margin:0 0 10px;">Conseils pour une estimation rapide</h2>
-          <ul class="muted" style="margin:6px 0 0 18px; padding:0;">
+          <h2>Conseils pour une estimation rapide</h2>
+
+          <p class="muted intro">
+            Décrivez votre projet et joignez vos documents. Un membre de notre équipe vous contacte rapidement
+            pour valider les détails et préparer votre soumission.
+          </p>
+
+          <ul class="muted tips">
             <li>Précisez le type de projet (commercial, institutionnel, développement immobilier, etc.).</li>
             <li>Indiquez les superficies approximatives et les matériaux envisagés.</li>
             <li>Ajoutez des photos, plans ou devis si disponibles.</li>
             <li>Précisez vos délais cibles et contraintes d’accès (site occupé, horaires, etc.).</li>
           </ul>
+
+          <div class="team-card" aria-label="Contact">
+            <figure class="team-figure">
+              <img src="images/daniel.jpg" alt="Daniel Frenette — VP et fondateur">
+              <figcaption>
+                <div class="team-name">Daniel Frenette</div>
+                <div class="team-role muted">VP et fondateur</div>
+              </figcaption>
+            </figure>
+          </div>
         </aside>
       </div>
     </section>

@@ -141,6 +141,9 @@
       object-fit: cover;
     }
 
+    .media img:only-child {
+      grid-column: 1 / -1;
+    }
     /* grille globale (2 colonnes de projets) */
     .grid {
       display: grid;
@@ -335,7 +338,7 @@
     <!-- Projets -->
     <section class="section" aria-labelledby="list-title">
       <div class="bar">
-        <div>Commercial •  Industriel • Institutionnel • développement immobilier</div>
+        <div>Commercial •  Industriel • Institutionnel • Développement immobilier</div>
       </div>
 
       <div class="grid">
@@ -386,6 +389,17 @@
           <div class="media">
             <img src="images/projets/p4a.jpg" alt="Photo1" loading="lazy">
             <img src="images/projets/p4b.jpeg" alt="Photo2" loading="lazy">
+          </div>
+        </article>
+        <!-- Projet 5 -->
+        <article class="project">
+          <div class="project-header">
+            <h2 class="project-title">École St-François d’Assise</h2>
+            <div class="project-meta">Mercier-Hochelaga-Maisonneuve, Montréal</div>
+          </div>
+          <p class="project-desc"></p>
+          <div class="media">
+            <img src="images/projets/p5a.jpg" alt="Photo1" loading="lazy">
           </div>
         </article>
       </div>
