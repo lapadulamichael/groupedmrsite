@@ -279,20 +279,19 @@
     }
     .nav-backdrop.is-visible{ display:block; }
   }
-  /* ----- Ajustement du nom dans le header sur mobile ----- */
-    @media (max-width: 720px) {
-      .brand-name {
-        white-space: nowrap;       /* Empêche le retour à la ligne */
-        font-size: 14px;           /* Réduit légèrement la taille */
-        line-height: 1;            /* Tient mieux dans le header */
-      }
-      .brand {
-        gap: 6px;                  /* Espace un peu plus compact */
-      }
-      .logo {
-        height: 32px;              /* Logo un peu plus petit */
-      }
+  /* Fix mobile: titre + ville sur 2 lignes (évite le texte coupé) */
+  @media (max-width: 720px){
+    .project-header{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
     }
+    .project-meta{
+      white-space: normal;   /* important */
+      font-size: 14px;       /* un peu plus petit */
+      line-height: 1.2;
+    }
+  }
   </style>
 </head>
 <link rel="icon" type="image/svg" sizes="32x32" href="images/favicon-32x32.svg">
