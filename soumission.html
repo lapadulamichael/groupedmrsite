@@ -37,7 +37,7 @@
     }
     .wrap{
       max-width: 1200px; width: 100%;
-      margin: 0 auto; padding: 0 20px;
+      margin: 0 auto; padding: 0 14px;
       display:flex; align-items:center; justify-content: space-between;
     }
     .brand{
@@ -257,7 +257,46 @@
     @media (max-width: 560px){
       .team-figure img{ height: 260px; }
     }
+    /* ===== Fix header overlap on mobile: put tagline under name+logo ===== */
+    @media (max-width: 720px) {
+      .brand{
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 8px;              /* row gap / column gap */
+        max-width: calc(100% - 120px); /* leaves room for the Menu button */
+      }
 
+      /* First brand-name (Carrelage DMR) */
+      .brand .brand-name:first-of-type{
+        order: 1;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1.1;
+        margin-top: 5px;
+      }
+
+      /* Logo */
+      .brand .logo{
+        order: 2;
+        height: 30px;
+        flex: 0 0 auto;
+      }
+
+      /* Second brand-name (tagline) goes on its own line */
+      .brand .brand-name:last-of-type{
+        order: 3;
+        flex: 0 0 100%;
+        display: block;
+        white-space: nowrap;       /* keep it on one line */
+        overflow: hidden;
+        text-overflow: ellipsis;   /* avoids overlap if too long */
+        font-size: 12px;
+        line-height: 1.1;
+        opacity: 0.9;
+        margin-top: 2px;
+        margin-bottom: 6px;
+      }
+    }
   </style>
 </head>
 <link rel="icon" type="image/svg" sizes="32x32" href="images/favicon-32x32.svg">

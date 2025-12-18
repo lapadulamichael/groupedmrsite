@@ -35,19 +35,21 @@
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
       border-bottom: 1px solid var(--line);
-      
     }
+
     .wrap{
       max-width: 1240px; width: 100%;
       margin: 0 auto; padding: 0 20px;
       display:flex; align-items:center; justify-content: space-between;
     }
+
     .brand{
       display:flex; align-items:center; gap:10px;
       color: var(--text-on-dark);
       font-weight:700; letter-spacing:.03em;
       text-decoration:none;
     }
+
     .brand-name{ font-size:18px; }
     .logo{ height:40px; width:auto; display:block; }
 
@@ -321,7 +323,6 @@
 
     /* 2) Ajustements tablette ≤ 960px */
     @media (max-width: 960px){
-      :root{ --header-h: 56px; }
 
       .wrap{ padding: 0 14px; }
 
@@ -364,7 +365,6 @@
 
     /* 3) Téléphone ≤ 560px */
     @media (max-width: 560px){
-      :root{ --header-h: 52px; }
 
       /* Titre + lignes plus courtes */
       #hero h1{ font-size: clamp(22px, 8vw, 32px); }
@@ -411,6 +411,46 @@
       }
       .logo {
         height: 32px;              /* Logo un peu plus petit */
+      }
+    }
+    /* ===== Fix header overlap on mobile: put tagline under name+logo ===== */
+    @media (max-width: 720px) {
+      .brand{
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 8px;              /* row gap / column gap */
+        max-width: calc(100% - 120px); /* leaves room for the Menu button */
+      }
+
+      /* First brand-name (Carrelage DMR) */
+      .brand .brand-name:first-of-type{
+        order: 1;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1.1;
+        margin-top: 5px;
+      }
+
+      /* Logo */
+      .brand .logo{
+        order: 2;
+        height: 30px;
+        flex: 0 0 auto;
+      }
+
+      /* Second brand-name (tagline) goes on its own line */
+      .brand .brand-name:last-of-type{
+        order: 3;
+        flex: 0 0 100%;
+        display: block;
+        white-space: nowrap;       /* keep it on one line */
+        overflow: hidden;
+        text-overflow: ellipsis;   /* avoids overlap if too long */
+        font-size: 12px;
+        line-height: 1.1;
+        opacity: 0.9;
+        margin-top: 2px;
+        margin-bottom: 6px;
       }
     }
   </style>
