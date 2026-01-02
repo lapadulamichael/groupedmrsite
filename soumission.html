@@ -7,7 +7,7 @@
   <meta name="description" content="Soumission pour vos projets de carrelage et revêtements — Carrelage DMR." />
   <style>
     :root{
-      --header-h: 64px;
+      --header-h: 65px;
       --text-on-dark: #eef3f7;
       --line: rgba(255,255,255,0.22);
       --accent: #e7b84b;
@@ -36,18 +36,46 @@
       border-bottom: 1px solid var(--line);
     }
     .wrap{
-      max-width: 1200px; width: 100%;
-      margin: 0 auto; padding: 0 14px;
+      max-width: 1400px; width: 100%;
+      padding: 0 20px;
       display:flex; align-items:center; justify-content: space-between;
     }
+
+    /* ---------- Brand in header (new layout) ---------- */
     .brand{
-      display:flex; align-items:center; gap:10px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      align-items: center;
+
       color: var(--text-on-dark);
-      font-weight:700; letter-spacing:.03em;
+      font-weight:700;
+      letter-spacing:.03em;
       text-decoration:none;
     }
-    .brand-name{ font-size:18px; }
-    .logo{ height:40px; width:auto; display:block; }
+
+    .logo{
+      grid-row: 1 / 3;        /* logo spans both lines */
+      grid-column: 1;
+      height:38px;
+      width:auto;
+      display:block;
+    }
+
+    .brand-name{
+      grid-column: 2;
+      font-size:15px;
+      line-height:1.1;
+      white-space: nowrap;
+    }
+
+    /* tagline line */
+    .brand-name:last-of-type{
+      font-size:11px;
+      font-weight:600;
+      opacity:0.9;
+    }
 
     nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:8px; }
     nav a{
@@ -127,6 +155,107 @@
     footer a{ color:#ffd66a; text-decoration:none; }
     footer a:hover{ text-decoration:underline; }
 
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      #hero::after{ inset:0; clip-path:none; }
+      #hero h1::after{ width:90px; }
+    }
+    /* ---------- ≤ 720px : header + hero + content ---------- */
+    @media (max-width: 720px){
+
+      /* header a bit taller on mobile */
+      :root{
+        --header-h: 86px;
+      }
+
+      .content{
+        background-attachment: scroll;
+      }
+
+      #hero{
+        background-attachment: scroll;
+      }
+
+      nav ul{
+        gap: 6px;
+      }
+
+      /* Header layout / spacing */
+      header{
+        /* same fixed bar, just taller thanks to --header-h above */
+        align-items: center;
+      }
+
+      .wrap{
+        padding: 8px 14px;           /* vertical + horizontal padding */
+      }
+
+      .brand{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 8px;
+        align-items: center;
+      }
+
+      .logo{
+        grid-row: 1 / 3;
+        grid-column: 1;
+        height: 32px;
+        width: auto;
+      }
+
+      .brand-name{
+        grid-column: 2;
+        font-size: 14px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 11.5px;
+        opacity: 0.95;
+      }
+
+      .nav-toggle{
+        padding: 6px 10px;
+      }
+    }
+    @media (max-width: 480px){
+      .wrap{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .brand{
+        column-gap: 6px;
+      }
+
+      .brand-name{
+        font-size: 13px;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 11px;
+      }
+    }
+    @media (min-width: 961px){
+      .logo{
+        height: 44px;
+      }
+
+      .brand-name{
+        font-size: 16px;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 12px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+    }
     /* ----- Bouton hamburger ----- */
     .nav-toggle{
       display:none; /* caché par défaut (desktop) */
