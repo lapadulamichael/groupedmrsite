@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Carrières — Groupe Construction DMR</title>
+
+  <meta name="description" content="Découvrez les opportunités de carrière au sein du Groupe Construction DMR. Poseurs, apprentis, contremaîtres, chargés de projet et plus.">
+
+  <style>
+    :root{
+      --header-h: 65px;
+      --text-on-dark: #eef3f7;
+      --line: rgba(255,255,255,0.22);
+      --accent: #e7b84b;
+    }
+
+    /* ---------- Base ---------- */
+    html, body { height: 100%; overflow-x: hidden; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#2a2f35;
+      line-height:1.6;
+      background:#0b0f13;
+    }
+    a { color: inherit; }
+
+    /* ---------- Header (même style) ---------- */
+    header{
+      position: fixed; inset: 0 0 auto 0;
+      height: var(--header-h);
+      z-index: 30;
+      display:flex; align-items:center;
+      background: rgba(10,16,22,0.35);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap{
+      max-width: 1400px; width: 100%;
+      padding: 0 20px;
+      display:flex; align-items:center; justify-content: space-between;
+    }
+
+    /* ---------- Brand in header ---------- */
+    .brand{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      align-items: center;
+
+      color: var(--text-on-dark);
+      font-weight:700;
+      letter-spacing:.03em;
+      text-decoration:none;
+    }
+
+    .logo{
+      grid-row: 1 / 3;
+      grid-column: 1;
+      height:38px;
+      width:auto;
+      display:block;
+    }
+
+    .brand-name{
+      grid-column: 2;
+      font-size:15px;
+      line-height:1.1;
+      white-space: nowrap;
+    }
+
+    .brand-name:last-of-type{
+      font-size:11px;
+      font-weight:600;
+      opacity:0.9;
+    }
+
+    nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:8px; }
+    nav a{
+      color: var(--text-on-dark);
+      text-decoration:none; font-weight:600; letter-spacing:.02em;
+      padding:8px 12px; border-radius:999px;
+      transition: background .2s ease, transform .15s ease;
+    }
+    nav a:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    nav a.active{ background: rgba(255,255,255,0.12); }
+
+    main{ padding-top: calc(var(--header-h) + 14px); }
+
+    /* ---------- Hero ---------- */
+    #hero{
+      position:relative; min-height: 46vh;
+      display:grid; place-items:center;
+      color:#fff; overflow:hidden; z-index:0;
+      background: url("images/projets/p1a.jpg") center/cover no-repeat;
+    }
+    #hero::before, #hero::after{ content:""; position:absolute; inset:0; z-index:1; }
+    #hero::before{ background: linear-gradient(180deg, rgba(10,16,22,.55), rgba(10,16,22,.55)); }
+    #hero::after{
+      inset:0 55% 0 0;
+      background: rgba(12,18,24,.55);
+      clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative; z-index:2;
+      width:100%; max-width:1200px;
+      margin:0 auto; padding:40px 20px;
+    }
+    #hero h1{
+      margin:0 0 8px 0; padding-bottom:12px;
+      text-transform:uppercase; letter-spacing:.06em; line-height:1.08;
+      font-weight:300; font-size: clamp(26px, 6vw, 56px);
+      color:#fff; text-shadow:0 2px 24px rgba(0,0,0,.35);
+      position:relative;
+    }
+    #hero h1::after{
+      content:""; position:absolute; left:0; bottom:0;
+      width:110px; height:2px;
+      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,.2));
+    }
+    .hero-sub{ color:#dfe7ee; opacity:.9; letter-spacing:.24em; text-transform:uppercase; font-size:12px; }
+
+    /* ---------- Sections / layout ---------- */
+    .content{
+      margin: 0;
+      padding: 32px 0 44px;
+    }
+
+    .section{
+      max-width: 1200px;
+      margin: 0 auto 28px;
+      padding: 0 20px;
+      color:#eaeff4;
+    }
+
+    .grid{
+      display:grid; gap:24px;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    @media (max-width: 960px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background:#111820;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.14);
+      padding: 22px 20px;
+    }
+    .card h2,
+    .card h3{
+      margin:0 0 10px;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .muted{ color:#c9d4de; opacity:.95; }
+
+    /* ---------- Jobs list ---------- */
+    .jobs{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:20px;
+      margin-top:14px;
+    }
+
+    .job-card{
+      background:#111820;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:18px 18px 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    }
+
+    .job-card h3{
+      margin-top:0;
+      margin-bottom:6px;
+      color:#fff;
+    }
+
+    .job-meta{
+      font-size:0.85rem;
+      color:#c9d4de;
+      opacity:0.9;
+      margin-bottom:10px;
+    }
+
+    .job-card p{
+      margin:0;
+      color:#dbe4ee;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:12px;
+      padding:10px 16px;
+      border-radius:10px;
+      border:1px solid var(--accent);
+      color:#0b0f13;
+      background:var(--accent);
+      font-weight:bold;
+      font-size:0.9rem;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{
+      filter:brightness(1.04);
+    }
+
+    /* ---------- Footer ---------- */
+    footer{
+      color:#d7e1ea; background:#111820; text-align:center;
+      padding:18px; border-top:1px solid rgba(255,255,255,.12); margin-top:8px; font-size:14px;
+    }
+    footer a{ color:#ffd66a; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      #hero::after{ inset:0; clip-path:none; }
+      #hero h1::after{ width:90px; }
+    }
+
+    @media (max-width: 720px){
+
+      :root{
+        --header-h: 86px;
+      }
+
+      .content{
+        background-attachment: scroll;
+      }
+
+      #hero{
+        background-attachment: scroll;
+      }
+
+      nav ul{
+        gap: 6px;
+      }
+
+      header{
+        align-items: center;
+      }
+
+      .wrap{
+        padding: 8px 14px;
+      }
+
+      .brand{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 8px;
+        align-items: center;
+      }
+
+      .logo{
+        grid-row: 1 / 3;
+        grid-column: 1;
+        height: 32px;
+        width: auto;
+      }
+
+      .brand-name{
+        grid-column: 2;
+        font-size: 14px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 11.5px;
+        opacity: 0.95;
+      }
+
+      .nav-toggle{
+        padding: 6px 10px;
+      }
+    }
+    @media (max-width: 480px){
+      .wrap{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .brand{
+        column-gap: 6px;
+      }
+
+      .brand-name{
+        font-size: 13px;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 11px;
+      }
+    }
+    @media (min-width: 961px){
+      .logo{
+        height: 44px;
+      }
+
+      .brand-name{
+        font-size: 16px;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 12px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+    }
+
+    /* ----- Bouton hamburger ----- */
+    .nav-toggle{
+      display:none;
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text-on-dark);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .nav-toggle:focus{ outline: 2px solid #fff; outline-offset: 2px; }
+    .nav-toggle__label{ font-weight: 700; letter-spacing:.02em; }
+
+    /* ----- Mobile nav ----- */
+    @media (max-width: 960px){
+      .nav-toggle{ display:flex; }
+
+      #site-nav{
+        position: fixed;
+        top: var(--header-h);
+        right: 0;
+        height: calc(100dvh - var(--header-h));
+        width: min(320px, 88vw);
+        background: rgba(10,16,22,0.92);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform .25s ease;
+        z-index: 28;
+        padding: 14px 16px;
+      }
+      #site-nav[data-open="true"]{ transform: translateX(0); }
+
+      #site-nav ul{ display: grid; gap: 10px; }
+      #site-nav a{
+        display:block;
+        padding:12px 10px;
+        border-radius:10px;
+        background: rgba(255,255,255,0.05);
+      }
+      #site-nav a:hover{
+        background: rgba(255,255,255,0.12);
+        transform:none;
+      }
+      body.nav-open{ overflow: hidden; }
+
+      .nav-backdrop{
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        background: rgba(0,0,0,.35);
+        z-index: 27;
+        display:none;
+      }
+      .nav-backdrop.is-visible{ display:block; }
+    }
+
+    /* Mobile pack / tweaks */
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg { max-width: 100%; height: auto; display: block; }
+    .container, .wrap { width: 100%; }
+
+    @media (max-width: 960px){
+      .wrap{ padding: 0 14px; }
+
+      #hero{ min-height: 62vh; background-attachment: scroll; }
+      .hero-inner{ grid-template-columns: 1fr; gap: 20px; padding: 28px 16px; }
+      #hero h1{ font-size: clamp(26px, 7vw, 44px); }
+
+      .content{
+        margin: 24px 0;
+        padding: 0 14px 32px;
+      }
+
+      .card{
+        padding: 18px 16px 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      }
+    }
+
+    @media (max-width: 560px){
+      #hero h1{ font-size: clamp(22px, 8vw, 32px); }
+      #hero h1::after{ width: 84px; }
+
+      .content{ padding: 0 12px 24px; }
+      .card{ padding: 16px 14px 8px; }
+
+      footer{ font-size: 13px; padding: 16px; }
+
+      .logo{
+        height:30px;
+      }
+      .brand-name{
+        font-size:13px;
+      }
+    }
+
+    @media (max-width: 560px){
+      html, body { overflow-x: hidden; }
+    }
+
+    @media (max-width: 970px){
+      .hero-logo-wrap {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 900px){
+      .brand .logo{
+        display: none;
+      }
+
+      .brand{
+        display: block;
+      }
+
+      .brand-name{
+        display: block;
+        line-height: 1.2;
+      }
+
+      .brand-name:first-of-type{
+        font-size: 13px;
+        margin-bottom: 2px;
+      }
+
+      .brand-name:last-of-type{
+        font-size: 11.5px;
+        opacity: .9;
+      }
+
+      :root{
+        --header-h: 60px;
+      }
+
+      .wrap{
+        padding: 10px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Accueil — Carrelage DMR">
+        <span class="brand-name">Groupe Construction DMR / Carrelage DMR</span>
+        <img src="images/logo_blanc.svg" alt="Logo Groupe Construction DMR" class="logo">
+        <span class="brand-name">CÉRAMIQUE, GRANIT, MARBRE, QUARTZ</span>
+      </a>
+
+      <!-- Bouton hamburger (mobile) -->
+      <button id="navToggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-toggle__label">Menu</span>
+      </button>
+
+      <nav id="site-nav" aria-label="Navigation principale" data-open="false">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="careers.html" class="active">Carrières</a></li>
+          <li><a href="soumission.html">Soumission</a></li>
+          <li><a href="contact.html">Nous joindre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- fond assombri pour le menu mobile -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" role="banner" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="hero-sub">Rejoignez notre équipe</p>
+        <h1 id="hero-title">Carrières</h1>
+      </div>
+    </section>
+
+    <section class="content">
+      <!-- Intro / Pourquoi travailler ici -->
+      <section class="section" aria-labelledby="careers-intro-title">
+        <div class="grid">
+          <article class="card">
+            <h2 id="careers-intro-title">Pourquoi rejoindre Carrelage DMR&nbsp;?</h2>
+            <p class="muted">
+              Depuis plus de 20 ans, Carrelage DMR participe à des projets d’envergure dans les secteurs
+              commercial, industriel et institutionnel. Nous misons sur la qualité du travail, la fiabilité
+              et le respect des échéanciers.
+            </p>
+            <p class="muted">
+              Au quotidien, cela se traduit par&nbsp;:
+            </p>
+            <ul class="muted" style="padding-left:18px; margin:10px 0;">
+              <li>une équipe expérimentée et accessible sur les chantiers et au bureau;</li>
+              <li>des projets variés, stimulants et bien organisés;</li>
+              <li>un environnement où la rigueur et la collaboration sont valorisées;</li>
+              <li>des conditions de travail compétitives selon l’expérience.</li>
+            </ul>
+            <p class="muted">
+              Que vous soyez carreleur d’expérience, apprenti, chargé de projet ou estimateur,
+              nous voulons travailler avec des personnes fières de leur travail.
+            </p>
+          </article>
+
+          <!-- Candidature spontanée -->
+          <aside class="card" aria-labelledby="spontanee-title">
+            <h3 id="spontanee-title">Candidature spontanée</h3>
+            <p class="muted">
+              Aucun poste ne correspond exactement à votre profil pour le moment&nbsp;?
+              Faites-nous parvenir votre CV et une courte présentation de votre expérience.
+            </p>
+            <p class="muted" style="margin-top:10px;">
+              Courriel&nbsp;:
+              <a href="mailto:info@groupedmr.com">info@groupedmr.com</a>
+            </p>
+            <p class="muted">
+              Veuillez indiquer le type de poste recherché (carreleur, apprenti, contremaître,
+              chargé de projet, estimateur, etc.) et la région où vous souhaitez travailler.
+            </p>
+            <a class="btn" href="mailto:info@groupedmr.com?subject=Candidature%20spontan%C3%A9e%20-%20Carrelage%20DMR">
+              Envoyer ma candidature
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Postes ouverts (alimenté par CMS / fichiers) -->
+      <section class="section" aria-labelledby="jobs-title">
+        <h2 id="jobs-title">Postes ouverts</h2>
+        <p class="muted">
+          Les postes affichés ci-dessous sont actuellement ouverts. Cliquez sur «&nbsp;Postuler&nbsp;» pour nous transmettre votre candidature.
+        </p>
+
+        <div id="jobs" class="jobs">
+          <!-- Cartes de postes insérées en JS -->
+        </div>
+
+        <p id="empty-message" class="muted" style="margin-top:16px; display:none;">
+          Aucun poste n’est affiché pour le moment.
+          Vous pouvez toutefois nous envoyer une candidature spontanée à
+          <a href="mailto:info@groupedmr.com">info@groupedmr.com</a>.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2025</span> Carrelage DMR. Tous droits réservés.</p>
+    <address>
+      Montréal, QC — <a href="mailto:Info@groupedmr.com">Info@groupedmr.com</a> •
+      <a href="tel:+1-450-912-1389">450-912-1389</a>
+    </address>
+  </footer>
+
+  <!-- Nav mobile JS -->
+  <script>
+    (function(){
+      const navToggle = document.getElementById('navToggle');
+      const nav = document.getElementById('site-nav');
+      const backdrop = document.getElementById('navBackdrop');
+
+      if (!navToggle || !nav) return;
+
+      function setOpen(open){
+        nav.dataset.open = open ? 'true' : 'false';
+        document.body.classList.toggle('nav-open', open);
+        if (backdrop) {
+          backdrop.classList.toggle('is-visible', open);
+        }
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = nav.dataset.open === 'true';
+        setOpen(!isOpen);
+      });
+
+      if (backdrop) {
+        backdrop.addEventListener('click', () => setOpen(false));
+      }
+    })();
+  </script>
+
+  <!-- Jobs loader (sera branché sur le CMS / fichiers JSON) -->
+  <script>
+    async function loadJobs() {
+      try {
+        const base = "content/jobs/";
+
+        const res = await fetch(base + "index.json");
+        if (!res.ok) throw new Error("No index");
+        const data = await res.json();
+
+        const jobs = await Promise.all(
+          (data.jobs || []).map(file =>
+            fetch(base + file).then(r => r.json())
+          )
+        );
+
+        const active = jobs.filter(j => j.active);
+        const container = document.getElementById("jobs");
+        const empty = document.getElementById("empty-message");
+
+        if (!active.length) {
+          if (empty) empty.style.display = "block";
+          return;
+        }
+
+        container.innerHTML = active.map(j => `
+          <article class="job-card">
+            <h3>${j.title}</h3>
+            <div class="job-meta">
+              ${(j.location || "")}${j.location && j.type ? " • " : ""}${j.type || ""}
+            </div>
+            <p>${j.summary ?? ""}</p>
+            <a
+              class="btn"
+              href="mailto:${j.apply_email}?subject=Candidature%20-%20${encodeURIComponent(j.title)}">
+              Postuler
+            </a>
+          </article>
+        `).join("");
+      } catch (e) {
+        const empty = document.getElementById("empty-message");
+        if (empty) empty.style.display = "block";
+      }
+    }
+
+    loadJobs();
+  </script>
+
+</body>
+</html>
