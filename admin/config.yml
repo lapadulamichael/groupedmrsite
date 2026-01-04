@@ -20,6 +20,5 @@ collections:
       - { label: "Lieu", name: "location", widget: "string", required: false }
       - { label: "Type", name: "type", widget: "string", required: false }
       - { label: "Résumé", name: "summary", widget: "text", required: false }
-      - { label: "Description", name: "description", widget: "markdown", required: false }
       - { label: "Email pour postuler", name: "apply_email", widget: "string" }
       - { label: "Actif", name: "active", widget: "boolean", default: true }
