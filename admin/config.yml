@@ -10,19 +10,20 @@ public_folder: "/images/uploads"
 collections:
   - name: "jobs"
     label: "Offres d’emploi"
+    folder: "content/jobs"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
     format: "json"
-    files:
-      - label: "Liste des postes"
-        name: "jobs"
-        file: "content/jobs/index.json"
-        fields:
-          - label: "Postes"
-            name: "jobs"
-            widget: "list"
-            fields:
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Lieu", name: "location", widget: "string", required: false }
-              - { label: "Type", name: "type", widget: "string", required: false }
-              - { label: "Résumé", name: "summary", widget: "markdown", required: false }
-              - { label: "Email pour postuler", name: "apply_email", widget: "string" }
-              - { label: "Actif", name: "active", widget: "boolean", default: true }
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Lieu", name: "location", widget: "string", required: false }
+      - { label: "Type", name: "type", widget: "string", required: false }
+      - label: "Résumé"
+        name: "summary"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
+      - { label: "Email pour postuler", name: "apply_email", widget: "string" }
+      - { label: "Actif", name: "active", widget: "boolean", default: true }
