@@ -19,6 +19,11 @@ collections:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Lieu", name: "location", widget: "string", required: false }
       - { label: "Type", name: "type", widget: "string", required: false }
-      - { label: "Résumé", name: "summary", widget: "markdown", required: false }
+      - label: "Résumé"
+        name: "summary"
+        widget: "markdown"
+        required: false
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+        editor_components: []
       - { label: "Email pour postuler", name: "apply_email", widget: "string" }
       - { label: "Actif", name: "active", widget: "boolean", default: true }
