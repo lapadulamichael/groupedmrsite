@@ -1,3 +1,12 @@
+backend:
+  name: github
+  repo: lapadulamichael/groupedmrsite
+  branch: main
+  base_url: https://groupedmrsite-cms-oauth.vercel.app/
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
 collections:
   - name: "jobs"
     label: "Offres d’emploi"
