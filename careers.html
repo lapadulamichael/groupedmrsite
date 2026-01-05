@@ -609,21 +609,24 @@
 
   <!-- Jobs loader (sera branché sur le CMS / fichiers JSON) -->
   <script>
+    function renderMarkdownInline(md = "") {
+      // mini-markdown: **bold**, *italic*, line breaks
+      return md
+        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.+?)\*/g, "<em>$1</em>")
+        .replace(/\n/g, "<br>");
+    }
     async function loadJobs() {
+      const base = "content/jobs/";
+
       try {
-        const base = "content/jobs/";
-
         const res = await fetch(base + "index.json");
-        if (!res.ok) throw new Error("No index");
+        if (!res.ok) throw new Error("No jobs file");
+
         const data = await res.json();
-
-        const jobs = await Promise.all(
-          (data.jobs || []).map(file =>
-            fetch(base + file).then(r => r.json())
-          )
-        );
-
+        const jobs = Array.isArray(data.jobs) ? data.jobs : [];
         const active = jobs.filter(j => j.active);
+
         const container = document.getElementById("jobs");
         const empty = document.getElementById("empty-message");
 
@@ -638,7 +641,7 @@
             <div class="job-meta">
               ${(j.location || "")}${j.location && j.type ? " • " : ""}${j.type || ""}
             </div>
-            <p>${j.summary ?? ""}</p>
+            <p>${renderMarkdownInline(j.summary || "")}</p>
             <a
               class="btn"
               href="mailto:${j.apply_email}?subject=Candidature%20-%20${encodeURIComponent(j.title)}">
@@ -649,6 +652,7 @@
       } catch (e) {
         const empty = document.getElementById("empty-message");
         if (empty) empty.style.display = "block";
+        console.error(e);
       }
     }
 
