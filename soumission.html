@@ -14,7 +14,7 @@
     }
 
     /* ---------- Base ---------- */
-    html, body { height: 100%; overflow-x: hidden; }
+    html, body { overflow-x: hidden; }
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
@@ -322,7 +322,6 @@
 
   *, *::before, *::after { box-sizing: border-box; }
   img, svg { max-width: 100%; height: auto; display: block; }
-  .container, .wrap { width: 100%; }
 
   /* 2) Ajustements tablette ≤ 960px */
   @media (max-width: 960px){
@@ -498,29 +497,316 @@
     <!-- Soumission -->
     <section class="section" aria-labelledby="form-title">
       <div class="grid">
-        <!-- Formulaire (Jotform embed) -->
-        <div class="card">
-  <iframe
-    id="jotform-iframe"
-    title="Soumission DMR"
-    allowtransparency="true"
-    allow="geolocation; microphone; camera"
-    src="https://form.jotform.com/252890932186062?nojump=1"
-    frameborder="0"
-    style="min-width:100%; width:1px; height:900px; border:0; background:transparent;"
-    scrolling="no">
-  </iframe>
-  <script type="text/javascript">
-    window.addEventListener("message", function(e){
-      if(!e.data) return;
-      var args = (""+e.data).split(":");
-      if(args[0] === "setHeight"){
-        var ifr = document.getElementById("jotform-iframe");
-        if(ifr) ifr.style.height = args[1] + "px";
-      }
-    });
-  </script>
-</div>
+        <div class="card form-card">
+          <h2 class="form-title">Demande de soumission</h2>
+
+          <form id="soumissionForm" class="quote-form" method="post" action="#" enctype="multipart/form-data" novalidate>
+            <div class="form-grid">
+              <!-- Nom -->
+              <div class="field">
+                <label for="fullName">Nom complet <span class="req">*</span></label>
+                <input id="fullName" name="fullName" type="text" placeholder="Votre nom" required />
+              </div>
+
+              <!-- Courriel -->
+              <div class="field">
+                <label for="email">Courriel <span class="req">*</span></label>
+                <input id="email" name="email" type="email" placeholder="example@example.com" required />
+              </div>
+
+              <!-- Téléphone -->
+              <div class="field">
+                <label for="phone">Numéro de téléphone <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" placeholder="000 000-0000" inputmode="tel" required />
+              </div>
+
+              <!-- Ville -->
+              <div class="field">
+                <label for="city">Ville <span class="req">*</span></label>
+                <input id="city" name="city" type="text" placeholder="Laval, Montreal, etc..." required />
+              </div>
+
+              <!-- Type de projet -->
+              <fieldset class="field fieldset">
+                <legend>Type de projet <span class="req">*</span></legend>
+                <div class="radio-col">
+                  <label class="radio">
+                    <input type="radio" name="projectType" value="Commercial" required />
+                    <span class="dot" aria-hidden="true"></span>
+                    Commercial
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="projectType" value="Institutionnel" />
+                    <span class="dot" aria-hidden="true"></span>
+                    Institutionnel
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="projectType" value="Industriel" />
+                    <span class="dot" aria-hidden="true"></span>
+                    Industriel
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="projectType" value="Développement immobilier" />
+                    <span class="dot" aria-hidden="true"></span>
+                    Développement immobilier
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Superficie -->
+              <fieldset class="field fieldset">
+                <legend>Superficie en pi2 <span class="req">*</span></legend>
+                <div class="radio-col">
+                  <label class="radio">
+                    <input type="radio" name="area" value="1000 - 3000" required />
+                    <span class="dot" aria-hidden="true"></span>
+                    1000 - 3000
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="area" value="3000 - 5000" />
+                    <span class="dot" aria-hidden="true"></span>
+                    3000 - 5000
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="area" value="5000 et +" />
+                    <span class="dot" aria-hidden="true"></span>
+                    5000 et +
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Description -->
+              <div class="field full">
+                <label for="description">Description du projet <span class="req">*</span></label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="6"
+                  placeholder="Type de travaux, matériaux souhaités, superficies, délais, contraintes..."
+                  required></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="actions full">
+                <button type="submit" class="submit-btn">Cliquez ici pour attacher les fichiers</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <style>
+          /* ===== Form card header ===== */
+          .form-card{ padding: 26px 22px; }
+          .form-title{
+            margin: 0 0 18px;
+            text-align:center;
+            color:#fff;
+            font-weight:800;
+            letter-spacing:.02em;
+          }
+
+          /* ===== Grid like screenshot ===== */
+          .quote-form{ width:100%; }
+          .form-grid{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px 26px;
+          }
+          .field.full, .actions.full{ grid-column: 1 / -1; }
+
+          @media (max-width: 860px){
+            .form-grid{ grid-template-columns: 1fr; }
+            .field.full, .actions.full{ grid-column: auto; }
+          }
+
+          /* ===== Labels / required star ===== */
+          .field label, .fieldset legend{
+            display:flex;
+            gap:8px;
+            align-items: baseline;
+            color:#eaf1f7;
+            font-weight:700;
+            margin-bottom:10px;
+          }
+          .req{ color:#ff4d4d; font-weight:900; }
+
+          /* ===== Inputs (dark, outlined) ===== */
+          .field input[type="text"],
+          .field input[type="email"],
+          .field input[type="tel"],
+          .field textarea{
+            width:100%;
+            background: rgba(8,12,16,.65);
+            color:#eaf1f7;
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 8px;
+            padding: 12px 12px;
+            outline: none;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.20);
+            transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+          }
+          .field textarea{
+            resize: vertical;
+            min-height: 140px;
+          }
+          .field input::placeholder,
+          .field textarea::placeholder{
+            color: rgba(234,241,247,.55);
+          }
+          .field input:focus,
+          .field textarea:focus{
+            border-color: rgba(231,184,75,.85);
+            box-shadow: 0 0 0 3px rgba(231,184,75,.18);
+          }
+
+          /* ===== Radio groups (left column style) ===== */
+          .fieldset{
+            border: 0;
+            padding: 0;
+            margin: 0;
+            min-width: 0;
+          }
+          .radio-col{ display:grid; gap: 10px; padding-top: 2px; }
+          .radio{
+            display:flex;
+            align-items:center;
+            gap: 10px;
+            color:#eaf1f7;
+            font-weight:600;
+            cursor:pointer;
+            user-select:none;
+          }
+          .radio input{
+            position:absolute;
+            opacity:0;
+            pointer-events:none;
+          }
+          .radio .dot{
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            border: 2px solid rgba(255,255,255,.55);
+            display:inline-grid;
+            place-items:center;
+            background: transparent;
+            box-shadow: 0 0 0 1px rgba(0,0,0,.35);
+          }
+          .radio .dot::after{
+            content:"";
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: transparent;
+            transform: scale(.85);
+            transition: background .15s ease;
+          }
+          .radio input:checked + .dot{
+            border-color: rgba(231,184,75,.95);
+          }
+          .radio input:checked + .dot::after{
+            background: rgba(231,184,75,.95);
+          }
+          .radio:focus-within .dot{
+            box-shadow: 0 0 0 3px rgba(231,184,75,.18);
+          }
+          /* ===== Submit button (green like screenshot) ===== */
+          .actions{
+            display:flex;
+            justify-content:center;
+            padding-top: 8px;
+          }
+          .submit-btn{
+            background:#19b45a;
+            color:#fff;
+            border:0;
+            border-radius: 6px;
+            font-weight:800;
+            padding: 14px 46px;
+            cursor:pointer;
+            box-shadow: 0 10px 18px rgba(0,0,0,.22);
+            transition: transform .12s ease, filter .12s ease;
+          }
+          .submit-btn:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+          .submit-btn:active{ transform: translateY(0); }
+        </style>
+
+        <script>
+        (function(){
+          const form = document.getElementById('soumissionForm');
+          const fileInput = document.getElementById('files');
+          const submitBtn = form.querySelector('button[type="submit"]');
+
+          function getSelectedFileNames(){
+            const files = Array.from(fileInput?.files || []);
+            if(!files.length) return "";
+            return files.map(f => `- ${f.name}`).join("\n");
+          }
+
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if(!form.checkValidity()){
+              form.reportValidity();
+              return;
+            }
+
+            const fd = new FormData(form);
+
+            const fullName = (fd.get("fullName") || "").toString().trim();
+            const email = (fd.get("email") || "").toString().trim();
+            const phone = (fd.get("phone") || "").toString().trim();
+            const city = (fd.get("city") || "").toString().trim();
+            const projectType = (fd.get("projectType") || "").toString().trim();
+            const area = (fd.get("area") || "").toString().trim();
+            const description = (fd.get("description") || "").toString().trim();
+
+            const filesList = getSelectedFileNames();
+
+            const subject = `Demande de soumission — ${fullName || "Client"}${city ? " (" + city + ")" : ""}`;
+
+            const body =
+        `Bonjour,
+
+        Voici une nouvelle demande de soumission :
+
+        --- Coordonnées ---
+        Nom complet : ${fullName}
+        Courriel : ${email}
+        Téléphone : ${phone || "(non fourni)"}
+        Ville : ${city}
+
+        --- Projet ---
+        Type de projet : ${projectType}
+        Superficie : ${area || "(non précisée)"}
+
+        --- Description ---
+        ${description}
+
+        --- Fichiers à joindre ---
+        ${filesList ? filesList : "(aucun fichier sélectionné sur le site)"}
+
+        IMPORTANT : Veuillez joindre les fichiers (plans, photos, devis) à ce courriel avant d'envoyer.
+
+        Merci.`;
+
+            // mailto can't carry huge bodies reliably; keep it reasonable
+            const mailto = `mailto:mikelap123@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // UX: change button label briefly
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Ouverture de votre courriel…";
+
+            // open default mail client
+            window.location.href = mailto;
+
+            // re-enable so user can retry if their mail app didn't open
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Cliquez ici pour attacher les fichiers";
+            }, 1200);
+          });
+        })();
+        </script>
 
         <!-- Infos complémentaires -->
         <aside class="card">
