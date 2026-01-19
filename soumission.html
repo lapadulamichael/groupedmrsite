@@ -510,7 +510,7 @@
 
               <!-- Courriel -->
               <div class="field">
-                <label for="email">Courriel <span class="req">*</span></label>
+                <label for="email">Courriel pour vous joindre <span class="req">*</span></label>
                 <input id="email" name="email" type="email" placeholder="example@example.com" required />
               </div>
 
@@ -782,15 +782,12 @@
         --- Description ---
         ${description}
 
-        --- Fichiers à joindre ---
-        ${filesList ? filesList : "(aucun fichier sélectionné sur le site)"}
-
         IMPORTANT : Veuillez joindre les fichiers (plans, photos, devis) à ce courriel avant d'envoyer.
 
         Merci.`;
 
             // mailto can't carry huge bodies reliably; keep it reasonable
-            const mailto = `mailto:mikelap123@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const mailto = `mailto:daniel@groupedmr.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             // UX: change button label briefly
             submitBtn.disabled = true;
